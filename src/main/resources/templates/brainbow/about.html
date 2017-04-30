@@ -2,6 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body>
+<img th:replace="fragments :: site-logo" />
+<h3 th:text="${title}">Default Title</h3>
+<nav th:replace="fragments :: navigation"></nav>
+
 <div>
     <p>
         Brainbow is a visual representation of relative time spent on different tasks.
