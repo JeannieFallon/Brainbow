@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body>
+<body class="container">
 <img th:replace="fragments :: site-logo" />
 <h3 th:text="${title}">Default Title</h3>
 <nav th:replace="fragments :: navigation"></nav>
 
-<h1>List of subjects</h1>
+<div class="mx-auto">
+    <h4>Sample Subject</h4>
+    <p th:text="${name}"></p>
+    <p th:text="${color}"></p>
+</div>
 
 <a href="/subject/add">Add Subject</a> |
 <a href="/subject/remove">Remove Subject</a>
