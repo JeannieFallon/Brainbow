@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<img th:replace="fragments :: site-logo" />
+<h3 th:text="${title}">Default Title</h3>
+<nav th:replace="fragments :: navigation"></nav>
+
+<h1>List of subjects</h1>
+
+<a href="/subject/add">Add Subject</a> |
+<a href="/subject/remove">Remove Subject</a>
+
+</body>
+</html>
