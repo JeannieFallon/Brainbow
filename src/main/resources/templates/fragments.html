@@ -3,16 +3,18 @@
 <head th:fragment="head">
     <meta charset="UTF-8"/>
     <title th:text="${title}">Brainbow</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 </head>
 <body>
-<img th:fragment="site-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Noto_Project_Rainbow_Emoji.svg/1000px-Noto_Project_Rainbow_Emoji.svg.png"
-     alt="rainbow" height="150" width="150" />
 
-<nav th:fragment="navigation">
-    <a href="/brainbow">Home</a> |
-    <a href="/brainbow/about">About</a> |
-    <a href="/subject">Subjects</a>
-</nav>
+    <img th:fragment="site-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Noto_Project_Rainbow_Emoji.svg/1000px-Noto_Project_Rainbow_Emoji.svg.png"
+         alt="rainbow" height="150em" width="150em"/>
+
+    <nav th:fragment="navigation">
+        <a href="/brainbow">Home</a> |
+        <a href="/brainbow/about">About</a> |
+        <a href="/subject">Subjects</a>
+    </nav>
 
 </body>
 </html>
