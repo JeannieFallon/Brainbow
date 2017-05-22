@@ -1,18 +1,15 @@
 package org.launchcode.controllers;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.launchcode.models.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
-
 /**
  * Created by jeannie on 5/1/17.
  */
 @Controller
-@RequestMapping(value = "subject")
+@RequestMapping(value = "brainbow/subject")
 public class SubjectController {
 
 
@@ -22,18 +19,18 @@ public class SubjectController {
         model.addAttribute("title", "Current Subjects");
         model.addAttribute("name", subject.getName());
         model.addAttribute("color", subject.getColor());
-        return "subject/index";
+        return "brainbow/subject/index";
     }
 
     @RequestMapping(value = "add")
     public String add(Model model) {
         model.addAttribute("title", "Add Subject");
-        return "subject/add";
+        return "brainbow/subject/add";
     }
 
     @RequestMapping(value = "remove")
     public String remove(Model model) {
         model.addAttribute("title", "Remove Subject");
-        return "subject/remove";
+        return "brainbow/subject/remove";
     }
 }
