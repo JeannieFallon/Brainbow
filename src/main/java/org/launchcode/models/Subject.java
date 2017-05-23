@@ -7,16 +7,15 @@ public class Subject {
 
     private int id;
     private String name;
-    private String color;  // make this into an enum
+    private SubjectColor color;
 
     public Subject() {
 
     }
 
-    public Subject(int id, String name, String color) {
+    public Subject(int id, String name) {
         this.id = id;
         this.name = name;
-        this.color = color;
     }
 
     public int getId() {
@@ -31,11 +30,11 @@ public class Subject {
         this.name = name;
     }
 
-    public String getColor() {
+    public SubjectColor getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(SubjectColor color) {
         this.color = color;
     }
 }
