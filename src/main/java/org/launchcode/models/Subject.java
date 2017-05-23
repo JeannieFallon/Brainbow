@@ -1,11 +1,19 @@
 package org.launchcode.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * Created by jeannie on 5/1/17.
  */
+@Entity
 public class Subject {
 
+    @Id
+    @GeneratedValue
     private int id;
+
     private String name;
     private SubjectColor color;
 
@@ -13,8 +21,7 @@ public class Subject {
 
     }
 
-    public Subject(int id, String name) {
-        this.id = id;
+    public Subject(String name) {
         this.name = name;
     }
 

@@ -1,6 +1,8 @@
 package org.launchcode.controllers;
 
+import org.launchcode.data.SubjectDao;
 import org.launchcode.models.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "brainbow/subject")
 public class SubjectController {
 
+    @Autowired
+    private SubjectDao subjectDao;
+
 
     @RequestMapping(value = "")
     public String index(Model model) {
-        Subject subject = new Subject(0, "Java", "green");
         model.addAttribute("title", "Current Subjects");
-        model.addAttribute("name", subject.getName());
-        model.addAttribute("color", subject.getColor());
         return "brainbow/subject/index";
     }
 
