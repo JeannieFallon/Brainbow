@@ -10,6 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -53,9 +54,21 @@ public class SubjectController {
         return "redirect:";
     }
 
-    @RequestMapping(value = "remove")
+    @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String remove(Model model) {
         model.addAttribute("title", "Remove Subject");
+        model.addAttribute("subjects", subjectDao.findAll());
         return "brainbow/subject/remove";
+    }
+
+    @RequestMapping(value = "remove", method = RequestMethod.POST)
+    public String remove(@RequestParam int[] ids) {
+
+        for(int id: ids) {
+            subjectDao.delete(id);
+        }
+
+        return "redirect:";
+
     }
 }
