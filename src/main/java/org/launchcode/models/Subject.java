@@ -3,6 +3,8 @@ package org.launchcode.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Created by jeannie on 5/1/17.
@@ -14,6 +16,8 @@ public class Subject {
     @GeneratedValue
     private int id;
 
+    @NotNull
+    @Size(min = 3, max = 35, message = "Subject should be a general area of study.")
     private String name;
     private SubjectColor color;
 

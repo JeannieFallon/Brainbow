@@ -6,9 +6,12 @@ import org.launchcode.models.SubjectColor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.validation.Valid;
 
 /**
  * Created by jeannie on 5/1/17.
@@ -38,7 +41,14 @@ public class SubjectController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String add(@ModelAttribute Subject subject, Model model) {
+    public String add(@ModelAttribute @Valid Subject subject, Errors errors, Model model) {
+
+        if(errors.hasErrors()){
+            model.addAttribute("title","Add Subject");
+            model.addAttribute("subjectColors", SubjectColor.values());
+            return "brainbow/subject/add";
+        }
+
         subjectDao.save(subject);
         return "redirect:";
     }
