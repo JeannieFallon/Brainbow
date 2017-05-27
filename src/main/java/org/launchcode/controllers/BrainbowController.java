@@ -2,10 +2,14 @@ package org.launchcode.controllers;
 
 import org.launchcode.data.BrainbowDao;
 import org.launchcode.data.SubjectDao;
+import org.launchcode.models.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Created by jeannie on 4/29/17.
@@ -30,7 +34,25 @@ public class BrainbowController {
     }
 
 
+    @RequestMapping(value = "log", method = RequestMethod.GET)
+    public String log(Model model) {
+        model.addAttribute("title","Log Worktime");
+        model.addAttribute("subjects",subjectDao.findAll());
+        return "brainbow/log";
+    }
 
+
+    @RequestMapping(value = "log", method = RequestMethod.POST)
+    public String log(@RequestParam int subjectId, @ModelAttribute int time) {
+
+        Subject subjectToEdit = subjectDao.findOne(subjectId);
+        int timeToLog = time + subjectToEdit.getTime();
+
+        subjectToEdit.setTime(timeToLog);
+        subjectDao.save(subjectToEdit);
+
+        return "redirect:";
+    }
 
 
 

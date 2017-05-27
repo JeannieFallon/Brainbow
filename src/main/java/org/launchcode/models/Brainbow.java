@@ -1,3 +1,5 @@
+// TODO: delete this class and its DAO; remove many-to-one link in Subject
+
 package org.launchcode.models;
 
 import javax.persistence.*;
@@ -20,6 +22,11 @@ public class Brainbow {
 
 
     public Brainbow() {
+
+    }
+
+    public Brainbow(List<Subject> subjects) {
+        this.subjects = subjects;
     }
 
     public List<Subject> getSubjects() {
