@@ -1,6 +1,5 @@
 package org.launchcode.controllers;
 
-import org.launchcode.models.Brainbow;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping(value = "brainbow")
 public class BrainbowController {
+
+
 
     @RequestMapping(value = "")
     public String index(Model model) {

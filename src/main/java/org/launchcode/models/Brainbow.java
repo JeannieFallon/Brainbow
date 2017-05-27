@@ -1,13 +1,25 @@
 package org.launchcode.models;
 
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by jeannie on 5/1/17.
  */
+@Entity
 public class Brainbow {
 
-    private List<Subject> subjects;
+    @Id
+    @GeneratedValue
+    private int id;
+
+    @OneToMany
+    @JoinColumn(name = "brainbow_id")
+    private List<Subject> subjects = new ArrayList<Subject>();
+
+    //private List<Cheese> cheeses = new ArrayList<Cheese>();
+
 
     public Brainbow() {
     }
