@@ -18,8 +18,6 @@ public class Brainbow {
     @JoinColumn(name = "brainbow_id")
     private List<Subject> subjects = new ArrayList<Subject>();
 
-    //private List<Cheese> cheeses = new ArrayList<Cheese>();
-
 
     public Brainbow() {
     }

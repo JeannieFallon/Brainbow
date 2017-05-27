@@ -1,5 +1,7 @@
 package org.launchcode.controllers;
 
+import org.launchcode.data.SubjectDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,11 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "brainbow")
 public class BrainbowController {
 
-
+    @Autowired
+    private SubjectDao subjectDao;
 
     @RequestMapping(value = "")
     public String index(Model model) {
         model.addAttribute("title", "Home");
+        model.addAttribute("subjects",subjectDao.findAll());
         return "brainbow/index";
     }
 

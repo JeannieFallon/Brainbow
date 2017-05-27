@@ -6,22 +6,32 @@
 <h3 th:text="${title}">Default Title</h3>
 <nav th:replace="fragments :: navigation"></nav>
 
-<!--
+
 <table class="table">
     <tr>
-        <th th:each="subject : ${subjects}" th:text="${subject.name}"></th>
+        <th>Subject</th>
+        <th>Color</th>
+        <th>Time</th>
+    </tr>
+    <tr th:each="subject : ${subjects}">
+        <td th:text="${subject.name}"></td>
+        <td th:text="${subject.color}"></td>
+        <td th:text="${subject.time}"></td>
     </tr>
 
 </table>
 
+<!--
 <table class="table">
     <tr>
-        <th class="col-md-4">Author</th>
-        <th class="col-md-8">Title</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Category</th>
     </tr>
-    <tr th:each="book : ${books.entrySet()}">
-        <td th:text="${book.getValue().getAuthor()}"></td>
-        <td th:text="${book.getValue().getBookTitle()}"></td>
+    <tr th:each="cheese : ${cheeses}">
+        <td th:text="${cheese.name}"></td>
+        <td th:text="${cheese.description}"></td>
+        <td th:text="${cheese.category.name}"></td>
     </tr>
 </table> -->
 

@@ -48,6 +48,14 @@ public class Subject {
         this.name = name;
     }
 
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+
     public SubjectColor getColor() {
         return color;
     }
