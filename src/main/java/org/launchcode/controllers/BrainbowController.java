@@ -5,7 +5,6 @@ import org.launchcode.models.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,11 +38,10 @@ public class BrainbowController {
 
 
     @RequestMapping(value = "log", method = RequestMethod.POST)
-    public String log(@RequestParam("time") int time, @ModelAttribute int subjectId) {
+    public String log(@RequestParam("time") int time, @RequestParam("subjectId") int subjectId) {
 
         Subject subjectToEdit = subjectDao.findOne(subjectId);
         int timeToLog = time + subjectToEdit.getTime();
-
         subjectToEdit.setTime(timeToLog);
         subjectDao.save(subjectToEdit);
 
