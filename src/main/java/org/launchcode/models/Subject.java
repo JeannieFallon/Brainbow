@@ -21,9 +21,6 @@ public class Subject {
     @Size(min = 3, max = 35, message = "Subject should be a general area of study.")
     private String name;
 
-    @ManyToOne
-    private Brainbow brainbow;
-
     private int time;
     private SubjectColor color;
 

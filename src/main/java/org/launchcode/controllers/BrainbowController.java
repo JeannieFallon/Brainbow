@@ -1,6 +1,5 @@
 package org.launchcode.controllers;
 
-import org.launchcode.data.BrainbowDao;
 import org.launchcode.data.SubjectDao;
 import org.launchcode.models.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping(value = "brainbow")
 public class BrainbowController {
-
-    @Autowired
-    private BrainbowDao brainbowDao;
 
     @Autowired
     private SubjectDao subjectDao;
@@ -43,7 +39,7 @@ public class BrainbowController {
 
 
     @RequestMapping(value = "log", method = RequestMethod.POST)
-    public String log(@RequestParam int subjectId, @ModelAttribute int time) {
+    public String log(@RequestParam("time") int time, @ModelAttribute int subjectId) {
 
         Subject subjectToEdit = subjectDao.findOne(subjectId);
         int timeToLog = time + subjectToEdit.getTime();
@@ -53,7 +49,6 @@ public class BrainbowController {
 
         return "redirect:";
     }
-
 
 
     @RequestMapping(value = "about")
