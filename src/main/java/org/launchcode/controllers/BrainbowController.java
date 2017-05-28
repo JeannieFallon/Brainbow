@@ -23,8 +23,9 @@ public class BrainbowController {
     @RequestMapping(value = "")
     public String index(Model model) {
         model.addAttribute("title", "Home");
-        //pass in an iterable of subjects to display on eventual Brainbow graphic
+        //pass in an iterable of subjects to display in eventual Brainbow graphic
         model.addAttribute("subjects",subjectDao.findAll());
+        //TODO: add suggestion to work on subject with least time logged
         return "brainbow/index";
     }
 
@@ -41,8 +42,11 @@ public class BrainbowController {
     public String log(@RequestParam("time") int time, @RequestParam("subjectId") int subjectId) {
 
         Subject subjectToEdit = subjectDao.findOne(subjectId);
+
+        //add user's time entered to previous time total
         int timeToLog = time + subjectToEdit.getTime();
         subjectToEdit.setTime(timeToLog);
+
         subjectDao.save(subjectToEdit);
 
         return "redirect:";
@@ -54,4 +58,6 @@ public class BrainbowController {
         model.addAttribute("title", "About");
         return "brainbow/about";
     }
+
+    //TODO: add ability to reset time on all subjects to 0
 }
