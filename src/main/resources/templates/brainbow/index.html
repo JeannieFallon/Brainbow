@@ -6,7 +6,7 @@
 <h3 th:text="${title}">Default Title</h3>
 <nav th:replace="fragments :: navigation"></nav>
 
-
+<!--TODO: create Brainbow graphic based on relative size of time field -->
 <table class="table">
     <tr>
         <th>Subject</th>
@@ -21,7 +21,16 @@
 
 </table>
 
-<!--TODO: add suggestion to work on subject with least time logged -->
+<div class="text-center">
+    <p>Based on your recent work history, you should devote some time to:</p>
+    <ul class="list-unstyled" th:each="lowestTimeSubject : ${lowestTimeSubjects}">
+        <!--TODO: figure out how to pass in subject's color for font color -->
+        <em><li th:text="${lowestTimeSubject.name}" style="color:blue;"></li></em>
+    </ul>
+</div>
+
+<!-- style="color:${lowestTimeSubject.getColor()}; -->
+
 
 </body>
 </html>
