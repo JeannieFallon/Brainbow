@@ -83,9 +83,9 @@ public class BrainbowController {
 
         Subject subjectToEdit = subjectDao.findOne(subjectId);
 
-        //add user's time entered to previous time total
-        int timeToLog = time + subjectToEdit.getTime();
-        subjectToEdit.setTime(timeToLog);
+        //add time logged to previous time
+        int newTime = time + subjectToEdit.getTime();
+        subjectToEdit.setTime(newTime);
 
         subjectDao.save(subjectToEdit);
 

@@ -21,12 +21,17 @@
 
 </table>
 
+<!--TODO: add a th:unless to check for List size of 1
+    if size == 1, display "Enter more subjects for comparison" message-->
+
 <div class="text-center">
     <p>Based on your recent work history, you should devote some time to:</p>
+
     <ul class="list-unstyled" th:each="lowestTimeSubject : ${lowestTimeSubjects}">
         <!--TODO: figure out how to pass in subject's color for font color -->
         <em><li th:text="${lowestTimeSubject.name}" style="color:blue;"></li></em>
     </ul>
+
 </div>
 
 <!-- style="color:${lowestTimeSubject.getColor()}; -->
