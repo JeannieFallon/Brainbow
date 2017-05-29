@@ -93,11 +93,31 @@ public class BrainbowController {
     }
 
 
+    @RequestMapping(value = "reset", method = RequestMethod.GET)
+    public String reset(Model model) {
+        model.addAttribute("title","Reset");
+        return "brainbow/reset";
+    }
+
+    @RequestMapping(value = "reset", method = RequestMethod.POST)
+    public String reset() {
+
+        Iterable<Subject> subjects = subjectDao.findAll();
+
+        //set time in each subject to 0
+        for(Subject subject : subjects) {
+            subject.setTime(0);
+            subjectDao.save(subject);
+        }
+
+        return "redirect:";
+    }
+
+
     @RequestMapping(value = "about")
     public String about(Model model) {
         model.addAttribute("title", "About");
         return "brainbow/about";
     }
 
-    //TODO: add ability to reset time on all subjects to 0
 }

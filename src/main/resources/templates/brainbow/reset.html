@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<div th:replace="fragments :: site-logo"></div>
+<h3 th:text="${title}">Default Title</h3>
+<nav th:replace="fragments :: navigation"></nav>
+
+<form method="post">
+
+    <div class="container" align="center">
+        <p>Press the button below to reset worktime on all subjects to 0. <br />
+            <strong>WARNING: This action cannot be undone.</strong>
+        </p>
+        <input type="submit" class="btn btn-danger btn-large" value="Reset Brainbow" />
+        <!--
+        <input type="hidden" value="${reset}" />
+        -->
+    </div>
+
+</form>
+
+</body>
+</html>
