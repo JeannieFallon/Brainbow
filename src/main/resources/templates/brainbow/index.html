@@ -6,6 +6,8 @@
 <h3 th:text="${title}">Default Title</h3>
 <nav th:replace="fragments :: navigation"></nav>
 
+
+
 <!--TODO: create Brainbow graphic based on relative size of time field -->
 <table class="table">
     <tr>
@@ -21,20 +23,27 @@
 
 </table>
 
-<!--TODO: add a th:unless to check for List size of 1
-    if size == 1, display "Enter more subjects for comparison" message-->
-
 <div class="text-center">
+
+    <!--TODO: don't display this text if subjects.size() < 2-->
     <p>Based on your recent work history, you should devote some time to:</p>
 
     <ul class="list-unstyled" th:each="lowestTimeSubject : ${lowestTimeSubjects}">
-        <!--TODO: figure out how to pass in subject's color for font color -->
+
+        <!--TODO: figure out how to pass in subject's color for font color
+            maybe something like: style="color:${lowestTimeSubject.getColor()};-->
+
         <em><li th:text="${lowestTimeSubject.name}" style="color:blue;"></li></em>
     </ul>
 
 </div>
 
-<!-- style="color:${lowestTimeSubject.getColor()}; -->
+
+<div th:unless="${subjects} and ${subjects.size()}" align="center">
+    <p>Please add subjects to your Brainbow.</p>
+    <a href="/brainbow/subject/add"><input class="btn btn-success" value="Add Subject" /></a>
+</div>
+
 
 
 </body>

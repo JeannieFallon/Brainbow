@@ -26,20 +26,19 @@ public class BrainbowController {
 
         Iterable<Subject> subjects = subjectDao.findAll();
 
+        //convert Iterable to List
+        ArrayList<Subject> subjectsList = new ArrayList<Subject>();
+        for(Subject subject: subjects) {
+            subjectsList.add(subject);
+        }
+
         /* Calculate which subject(s) user should work on next, based on lowest worktime */
 
-        //declare list of subjects with lowest worktime
         //use ArrayList in case multiple subjects share same lowest worktime
         ArrayList<Subject> lowestTimeSubjects = new ArrayList<Subject>();
 
         //check for no subjects
-        if(subjects != null) {
-
-            //convert Iterable to List in order to access first subject directly
-            ArrayList<Subject> subjectsList = new ArrayList<Subject>();
-                for(Subject subject: subjects) {
-                    subjectsList.add(subject);
-                }
+        if(subjectsList.size() > 0) {
 
             //set lowest time to first subject as baseline
             int lowestTime = subjectsList.get(0).getTime();
@@ -62,8 +61,8 @@ public class BrainbowController {
         }
 
         model.addAttribute("title", "Home");
-        //pass in Iterable of subjects to display in eventual Brainbow graphic
-        model.addAttribute("subjects",subjects);
+        //pass in List of all subjects to display in eventual Brainbow graphic
+        model.addAttribute("subjects",subjectsList);
         //pass in List of subject(s) with lowest worktime to suggest next subject to user
         model.addAttribute("lowestTimeSubjects",lowestTimeSubjects);
         return "brainbow/index";

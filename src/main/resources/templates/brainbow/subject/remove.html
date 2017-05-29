@@ -6,6 +6,8 @@
 <h3 th:text="${title}">Default Title</h3>
 <nav th:replace="fragments :: navigation"></nav>
 
+<!--TODO: disable remove option if no subjects-->
+
 <form method="post">
     <div th:each="subject : ${subjects}" class="checkbox">
         <input type="checkbox" name="ids" th:value="${subject.id}" th:id="${subject.id}"/>
