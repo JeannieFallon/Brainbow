@@ -28,12 +28,26 @@ public class BrainbowController {
         Iterable<Subject> subjects = subjectDao.findAll();
 
         //convert Iterable to List
+        //tally total time using same loop
         ArrayList<Subject> subjectsList = new ArrayList<Subject>();
+        double totalTime = 0;
         for(Subject subject: subjects) {
             subjectsList.add(subject);
+            totalTime += subject.getTime();
         }
 
-        /* Calculate which subject(s) user should work on next, based on lowest worktime */
+        /* Calculate each subject's percentage of total time */
+
+        //check for division by zero
+        if(totalTime > 0) {
+            for(Subject subject: subjectsList) {
+                int subjectTime = subject.getTime();
+                subject.setTimePercentage((subjectTime/totalTime) * 100);
+                subjectDao.save(subject);
+            }
+        }
+
+        /* Find which subject(s) user should work on next, based on lowest worktime */
 
         //use ArrayList in case multiple subjects share same lowest worktime
         ArrayList<Subject> lowestTimeSubjects = new ArrayList<Subject>();
@@ -60,6 +74,9 @@ public class BrainbowController {
                 }
             }
         }
+
+        //TEST
+        model.addAttribute("totalTime", totalTime);
 
         model.addAttribute("title", "Home");
         //pass in List of all subjects to display in eventual Brainbow graphic
@@ -108,6 +125,7 @@ public class BrainbowController {
         //set time in each subject to 0
         for(Subject subject : subjects) {
             subject.setTime(0);
+            subject.setTimePercentage(0);
             subjectDao.save(subject);
         }
 

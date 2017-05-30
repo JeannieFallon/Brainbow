@@ -20,7 +20,8 @@ public class Subject {
     @Size(min = 3, max = 35, message = "Subject should be a general area of study.")
     private String name;
 
-    private int time;
+    private int time;                   //time will be measured in minutes
+    private double timePercentage;      //will store relation of subject's time to total time
     private SubjectColor color;
 
     public Subject() {
@@ -30,6 +31,7 @@ public class Subject {
     public Subject(String name) {
         this.name = name;
         this.time = 0;
+        this.timePercentage = 0;
     }
 
     public int getId() {
@@ -50,6 +52,14 @@ public class Subject {
 
     public void setTime(int time) {
         this.time = time;
+    }
+
+    public double getTimePercentage() {
+        return timePercentage;
+    }
+
+    public void setTimePercentage(double timePercentage) {
+        this.timePercentage = timePercentage;
     }
 
     public SubjectColor getColor() {

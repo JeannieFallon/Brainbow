@@ -12,11 +12,13 @@
                 <th>Subject</th>
                 <th>Color</th>
                 <th>Time</th>
+                <th>% Total Worktime</th>
             </tr>
             <tr th:each="subject : ${subjects}">
                 <td th:text="${subject.name}"></td>
                 <td th:text="${subject.color}"></td>
                 <td th:text="${subject.time}"></td>
+                <td th:text="${#numbers.formatDecimal(subject.timePercentage, 0, 2)}"></td>
             </tr>
         </table>
         <div class="text-center">
