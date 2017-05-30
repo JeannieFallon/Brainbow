@@ -51,7 +51,8 @@ public class SubjectController {
         }
 
         subjectDao.save(subject);
-        return "redirect:";
+
+        return "redirect:/brainbow";
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.GET)
@@ -68,7 +69,7 @@ public class SubjectController {
             subjectDao.delete(id);
         }
 
-        return "redirect:";
+        return "redirect:/brainbow";
 
     }
 }
