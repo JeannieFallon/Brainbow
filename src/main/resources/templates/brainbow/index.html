@@ -9,35 +9,29 @@
 
 
 <!--TODO: create Brainbow graphic based on relative size of time field -->
-<table class="table">
-    <tr>
-        <th>Subject</th>
-        <th>Color</th>
-        <th>Time</th>
-    </tr>
-    <tr th:each="subject : ${subjects}">
-        <td th:text="${subject.name}"></td>
-        <td th:text="${subject.color}"></td>
-        <td th:text="${subject.time}"></td>
-    </tr>
+<div th:if="${subjects.size()} > 0">
+    <table class="table">
+        <tr>
+            <th>Subject</th>
+            <th>Color</th>
+            <th>Time</th>
+        </tr>
+        <tr th:each="subject : ${subjects}">
+            <td th:text="${subject.name}"></td>
+            <td th:text="${subject.color}"></td>
+            <td th:text="${subject.time}"></td>
+        </tr>
 
-</table>
-
-<div class="text-center">
-
-    <!--TODO: don't display this text if subjects.size() < 2-->
-    <p>Based on your recent work history, you should devote some time to:</p>
-
-    <ul class="list-unstyled" th:each="lowestTimeSubject : ${lowestTimeSubjects}">
-
-        <!--TODO: figure out how to pass in subject's color for font color
-            maybe something like: style="color:${lowestTimeSubject.getColor()};-->
-
-        <em><li th:text="${lowestTimeSubject.name}" style="color:blue;"></li></em>
-    </ul>
-
+    </table>
+    <div class="text-center">
+        <p>Based on your recent work history, you should devote time to:</p>
+        <ul class="list-unstyled" th:each="lowestTimeSubject : ${lowestTimeSubjects}">
+            <!--TODO: figure out how to pass in subject's color for font color
+                maybe something like: style="color:${lowestTimeSubject.getColor()};-->
+            <em><li th:text="${lowestTimeSubject.name}" style="color:blue;"></li></em>
+        </ul>
+    </div>
 </div>
-
 
 <div th:unless="${subjects} and ${subjects.size()}" align="center">
     <p>Please add subjects to your Brainbow.</p>

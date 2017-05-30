@@ -14,6 +14,7 @@ import java.util.ArrayList;
 /**
  * Created by jeannie on 4/29/17.
  */
+
 @Controller
 @RequestMapping(value = "brainbow")
 public class BrainbowController {
@@ -95,6 +96,7 @@ public class BrainbowController {
     @RequestMapping(value = "reset", method = RequestMethod.GET)
     public String reset(Model model) {
         model.addAttribute("title","Reset");
+        model.addAttribute("subjects",subjectDao.findAll());
         return "brainbow/reset";
     }
 

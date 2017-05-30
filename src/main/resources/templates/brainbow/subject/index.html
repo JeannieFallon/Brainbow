@@ -10,8 +10,15 @@
     <li th:text="${subject.name}"></li>
 </ul>
 
-<a href="/brainbow/subject/add">Add Subject</a> |
-<a href="/brainbow/subject/remove">Remove Subject</a>
+<div th:if="${subjects.size()} > 0">
+    <a href="/brainbow/subject/add">Add Subject</a> |
+    <a href="/brainbow/subject/remove">Remove Subject</a>
+</div>
+
+<div th:unless="${subjects} and ${subjects.size()}" align="center">
+    <p>Please add subjects to your Brainbow.</p>
+    <a href="/brainbow/subject/add"><input class="btn btn-success" value="Add Subject" /></a>
+</div>
 
 </body>
 </html>
