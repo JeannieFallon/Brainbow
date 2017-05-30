@@ -6,9 +6,20 @@
     <h3 th:text="${title}">Default Title</h3>
     <nav th:replace="fragments :: navigation"></nav>
 
-    <ul th:each="subject : ${subjects}">
-        <li th:text="${subject.name}"></li>
-    </ul>
+    <div th:if="${subjects.size()} > 0">
+        <table class="table">
+            <tr>
+                <th>Subject</th>
+                <th>Color</th>
+                <th>Time</th>
+            </tr>
+            <tr th:each="subject : ${subjects}">
+                <td th:text="${subject.name}"></td>
+                <td th:text="${subject.color}"></td>
+                <td th:text="${subject.time}"></td>
+            </tr>
+        </table>
+    </div>
 
     <div th:if="${subjects.size()} > 0">
         <a href="/brainbow/subject/add">Add Subject</a> |
