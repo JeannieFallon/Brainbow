@@ -2,23 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
-<div th:replace="fragments :: site-logo"></div>
-<h3 th:text="${title}">Default Title</h3>
-<nav th:replace="fragments :: navigation"></nav>
+    <div th:replace="fragments :: site-logo"></div>
+    <h3 th:text="${title}">Default Title</h3>
+    <nav th:replace="fragments :: navigation"></nav>
 
-<ul th:each="subject : ${subjects}">
-    <li th:text="${subject.name}"></li>
-</ul>
+    <ul th:each="subject : ${subjects}">
+        <li th:text="${subject.name}"></li>
+    </ul>
 
-<div th:if="${subjects.size()} > 0">
-    <a href="/brainbow/subject/add">Add Subject</a> |
-    <a href="/brainbow/subject/remove">Remove Subject</a>
-</div>
+    <div th:if="${subjects.size()} > 0">
+        <a href="/brainbow/subject/add">Add Subject</a> |
+        <a href="/brainbow/subject/remove">Remove Subject</a>
+    </div>
 
-<div th:unless="${subjects} and ${subjects.size()}" align="center">
-    <p>Please add subjects to your Brainbow.</p>
-    <a href="/brainbow/subject/add"><input class="btn btn-success" value="Add Subject" /></a>
-</div>
-
+    <div th:replace="fragments :: no-subjects"></div>
 </body>
 </html>

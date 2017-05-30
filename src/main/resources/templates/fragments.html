@@ -26,5 +26,12 @@
         <br />
     </nav>
 
+    <div th:fragment="no-subjects">
+        <div th:unless="${subjects} and ${subjects.size()}" align="center">
+            <p>Please add subjects to your Brainbow.</p>
+            <a href="/brainbow/subject/add"><input class="btn btn-success" value="Add Subject" /></a>
+        </div>
+    </div>
+
 </body>
 </html>

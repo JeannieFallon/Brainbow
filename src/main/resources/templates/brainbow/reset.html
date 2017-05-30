@@ -2,24 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
-<div th:replace="fragments :: site-logo"></div>
-<h3 th:text="${title}">Default Title</h3>
-<nav th:replace="fragments :: navigation"></nav>
-
-<div th:if="${subjects.size()} > 0" class="container" align="center">
-    <form method="post">
-        <p>Press the button below to reset worktime on all subjects to 0. <br />
-            <strong>WARNING: This action cannot be undone.</strong>
-        </p>
-        <input type="submit" class="btn btn-danger btn-large" value="Reset Brainbow" />
-    </form>
-</div>
-
-<div th:unless="${subjects} and ${subjects.size()}" align="center">
-    <p>Please add subjects to your Brainbow.</p>
-    <a href="/brainbow/subject/add"><input class="btn btn-success" value="Add Subject" /></a>
-</div>
-
-
+    <div th:replace="fragments :: site-logo"></div>
+    <h3 th:text="${title}">Default Title</h3>
+    <nav th:replace="fragments :: navigation"></nav>
+    <div th:if="${subjects.size()} > 0" class="container" align="center">
+        <form method="post">
+            <p>Press the button below to reset worktime on all subjects to 0. <br />
+                <strong>WARNING: This action cannot be undone.</strong>
+            </p>
+            <input type="submit" class="btn btn-danger btn-large" value="Reset Brainbow" />
+        </form>
+    </div>
+    <div th:replace="fragments :: no-subjects"></div>
 </body>
 </html>
