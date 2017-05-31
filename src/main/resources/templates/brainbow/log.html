@@ -7,22 +7,24 @@
     <nav th:replace="fragments :: navigation"></nav>
     <div th:if="${subjects.size()} > 0">
         <form method="post" style="max-width:400px;">
-            <div class="form-group">
-                <label th:for="subjectId">Choose subject</label>
-                <br />
-                <select name="subjectId">
-                    <option th:each="subject : ${subjects}"
-                            th:text="${subject.name}"
-                            th:value="${subject.id}">
-                    </option>
-                </select>
+
+            <label th:for="ids">What subjects did you work on?</label>
+
+            <div th:each="subject : ${subjects}" class="checkbox">
+                <div class="col-md-6 col-md-offset-1">
+                    <input type="checkbox" name="ids" th:value="${subject.id}" th:id="${subject.id}"/>
+                    <label th:for="${subject.id}" th:text="${subject.name}"></label>
+                </div>
             </div>
             <div class="form-group">
-                <label th:for="time">Time</label>
-                <input class="form-control" type="number" name="time" placeholder="Enter time worked in minutes" />
+                <!--This is junk html, but I'm sick of messing around with spacing right now
+                    TODO: fix this hardcoded linebreak abomination-->
+                <p><br/><br/></p>
+                <label th:for="time">How long did you work for?</label>
+                <input class="form-control" type="number" name="time" placeholder="Enter time in minutes." />
             </div>
             <div class="form-group">
-                <input class="btn btn-primary" type="submit" value="Log Worktime" />
+                <input class="btn btn-primary" type="submit" value="Log worktime" />
             </div>
         </form>
     </div>

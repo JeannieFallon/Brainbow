@@ -96,15 +96,19 @@ public class BrainbowController {
 
 
     @RequestMapping(value = "log", method = RequestMethod.POST)
-    public String log(@RequestParam("time") int time, @RequestParam("subjectId") int subjectId) {
+    public String log(@RequestParam("time") int time, @RequestParam("ids") int[] ids) {
 
-        Subject subjectToEdit = subjectDao.findOne(subjectId);
+        /* Divide entered worktime among selected subjects */
 
-        //add time logged to previous time
-        int newTime = time + subjectToEdit.getTime();
-        subjectToEdit.setTime(newTime);
+        int dividedTime = time / ids.length;
 
-        subjectDao.save(subjectToEdit);
+        for(int id : ids) {
+            Subject subjectToEdit = subjectDao.findOne(id);
+            //add time entered to previous time
+            int newTime = dividedTime + subjectToEdit.getTime();
+            subjectToEdit.setTime(newTime);
+            subjectDao.save(subjectToEdit);
+        }
 
         return "redirect:";
     }

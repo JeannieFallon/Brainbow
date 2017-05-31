@@ -8,10 +8,12 @@
 
 
     <form method="post">
-        <div th:each="subject : ${subjects}" class="checkbox">
-            <input type="checkbox" name="ids" th:value="${subject.id}" th:id="${subject.id}"/>
-            <label th:for="${subject.id}" th:text="${subject.name}"></label>
-            <br />
+        <div class="container">
+            <div th:each="subject : ${subjects}" class="checkbox">
+                <input type="checkbox" name="ids" th:value="${subject.id}" th:id="${subject.id}"/>
+                <label th:for="${subject.id}" th:text="${subject.name}"></label>
+                <br />
+            </div>
         </div>
         <div th:if="${subjects.size()} > 0">
             <input type="submit" class="btn btn-danger" value="Remove Subject" />
