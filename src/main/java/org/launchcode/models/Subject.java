@@ -3,6 +3,7 @@ package org.launchcode.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -20,6 +21,8 @@ public class Subject {
     @Size(min = 3, max = 35, message = "Subject should be a general area of study.")
     private String name;
 
+    @NotNull
+    @Max(500)
     private int time;                   //time will be measured in minutes
     private double timePercentage;      //will store relation of subject's time to total time
     private SubjectColor color;

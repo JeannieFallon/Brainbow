@@ -1,14 +1,18 @@
 package org.launchcode.controllers;
 
 import org.launchcode.data.SubjectDao;
+import org.launchcode.models.LogTime;
 import org.launchcode.models.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 
 /**
@@ -91,16 +95,23 @@ public class BrainbowController {
     public String log(Model model) {
         model.addAttribute("title","Log Worktime");
         model.addAttribute("subjects",subjectDao.findAll());
+        model.addAttribute(new LogTime());
         return "brainbow/log";
     }
 
-
+    //TODO: Fix validation for time. Remove model binding.
     @RequestMapping(value = "log", method = RequestMethod.POST)
-    public String log(@RequestParam("time") int time, @RequestParam("ids") int[] ids) {
+    public String log(@ModelAttribute @Valid LogTime logTime, @RequestParam("ids") int[] ids,
+                      Errors errors, Model model) {
 
-        /* Divide entered worktime among selected subjects */
+        if(errors.hasErrors()) {
+            model.addAttribute("title","Log Worktime");
+            model.addAttribute("subjects",subjectDao.findAll());
+            return "brainbow/log";
+        }
 
-        int dividedTime = time / ids.length;
+        //divide time logged among selected subjects
+        int dividedTime = logTime.getTimeToLog() / ids.length;
 
         for(int id : ids) {
             Subject subjectToEdit = subjectDao.findOne(id);
@@ -113,10 +124,13 @@ public class BrainbowController {
         return "redirect:";
     }
 
+    //TODO: Overload log POST method to handle no subjects selected
+
 
     @RequestMapping(value = "reset", method = RequestMethod.GET)
     public String reset(Model model) {
         model.addAttribute("title","Reset");
+        //pass in subjects for template conditional
         model.addAttribute("subjects",subjectDao.findAll());
         return "brainbow/reset";
     }
