@@ -7,10 +7,6 @@ Brainbow is a tool to analyze worktime distribution using graphical and text fee
 dynamic graphic of colored columns--the "brain rainbow" itself--the app also explicitly suggests what 
 subject or project the user should work on next. 
 
-31 May 2017: The data handling of the app is finished. However the visual crux of the app, 
-the colorful Brainbow graphic, is still in progress. Currently the home page displays the 
-raw data: subject name, color, subject time, and subject time as percentage of total time.
-
 Users begin with a prompt to add subjects.
 ![alt tag](https://cloud.githubusercontent.com/assets/23560083/26634258/0ce15c5c-45e4-11e7-9653-46cc036a3d5a.png "App at start")
 
