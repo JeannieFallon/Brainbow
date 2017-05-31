@@ -1,6 +1,4 @@
 # brainbow
-A tool to create a visual representation of relative time spent on different tasks
-
 /* In progress */
 
 Brainbow is a tool to analyze worktime distribution using graphical and text feedback. In addition to a 
