@@ -13,7 +13,7 @@ Users create custom subjects and assign a color to each.
 ![alt tag](https://cloud.githubusercontent.com/assets/23560083/26634261/0cf7ff0c-45e4-11e7-8cf8-4e3201e3a3c3.png "Add subject")
 
 
-After a work session, users log the number of minutes worked and choose which subjects comprised the work. 
+After a work session, users log the number of minutes worked and choose which subjects composed the work. 
 Brainbow then distributes the work evenly among selected subjects. 
 ![alt tag](https://cloud.githubusercontent.com/assets/23560083/26634259/0cebe6f4-45e4-11e7-8d51-f63ae353de7c.png "Log worktime")
 
