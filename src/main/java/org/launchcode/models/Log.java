@@ -20,6 +20,7 @@ public class Log {
     @Max(500)
     private int timeToLog;
 
+    //use List of full Subject objects in order to expand log analysis later
     @OneToMany
     @JoinColumn(name = "log_id")
     private List<Subject> subjects = new ArrayList<Subject>();
@@ -46,5 +47,19 @@ public class Log {
 
     public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
+    }
+
+    //convert List of Subjects to String of Subject names for display on History page
+    //does this violate encapsulation? is this a data operation better performed elsewhere?
+    public String convertSubjectsToString(List<Subject> subjects) {
+
+        String subjectsString = new String();
+        subjectsString += " | ";
+        for(Subject subject : subjects) {
+            subjectsString += subject.getName() + " | ";
+        }
+
+        //String subjectsString = StringUtils.collectionToDelimitedString(subjects, "|");
+        return subjectsString;
     }
 }

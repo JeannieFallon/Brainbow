@@ -25,11 +25,13 @@ import java.util.List;
 @RequestMapping(value = "brainbow")
 public class BrainbowController {
 
+
     @Autowired
     private SubjectDao subjectDao;
 
     @Autowired
     private LogDao logDao;
+
 
     @RequestMapping(value = "")
     public String index(Model model) {
@@ -168,6 +170,18 @@ public class BrainbowController {
         }
 
         return "redirect:";
+    }
+
+
+    @RequestMapping(value = "history")
+    public String history(Model model) {
+
+        Iterable<Log> logs = logDao.findAll();
+
+        model.addAttribute("title", "History");
+        model.addAttribute("logs", logs);
+
+        return "brainbow/history";
     }
 
 

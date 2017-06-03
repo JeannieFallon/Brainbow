@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+    <div th:replace="fragments :: site-logo"></div>
+    <h3 th:text="${title}">Default Title</h3>
+    <nav th:replace="fragments :: navigation"></nav>
+
+    <div th:if="${logs.size()} > 0">
+        <table class="table">
+            <tr>
+                <th>Minutes Worked</th>
+                <th>Subjects Covered</th>
+            </tr>
+            <tr th:each="log : ${logs}">
+                <td th:text="${log.timeToLog}"></td>
+                <td th:text="${log.convertSubjectsToString(log.subjects)}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div th:unless="${logs} and ${logs.size()}" align="center">
+        <p><em>You haven't logged any work sessions yet.</em></p>
+    </div>
+
+</body>
+</html>
