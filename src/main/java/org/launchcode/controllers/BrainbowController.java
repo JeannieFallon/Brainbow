@@ -104,7 +104,7 @@ public class BrainbowController {
         return "brainbow/log";
     }
 
-    @RequestMapping(value = "log", method = RequestMethod.POST)
+    @RequestMapping(value = "log", method = RequestMethod.POST, params={"ids"})
     public String log(@ModelAttribute @Valid Log log, @RequestParam("ids") int[] ids,
                       Errors errors, Model model) {
 
@@ -137,7 +137,14 @@ public class BrainbowController {
         return "redirect:";
     }
 
-    //TODO: Overload log POST method to handle no subjects selected
+    //Overload Log POST method to handle no checkboxes selected
+    @RequestMapping(value = "log", method = RequestMethod.POST)
+    public String log(@ModelAttribute @Valid Log log, Errors errors, Model model) {
+        model.addAttribute("title","Log Worktime");
+        model.addAttribute("subjects",subjectDao.findAll());
+        model.addAttribute("noCheckboxError", "You must select at least one subject.");
+        return "brainbow/log";
+    }
 
 
     @RequestMapping(value = "reset", method = RequestMethod.GET)

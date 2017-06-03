@@ -17,9 +17,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <!--This is junk html, but I'm sick of messing around with spacing right now
-                    TODO: fix this hardcoded linebreak abomination-->
-                <p><br/><br/></p>
+                <!--TODO: fix the placeholder on logTime input -->
                 <label th:for="logTime">How long did you work for?</label>
                 <input class="form-control" th:field="*{timeToLog}" />
                 <span th:errors="*{timeToLog}" class="error"></span>
@@ -28,6 +26,7 @@
                 <input type="submit" class="btn btn-primary" value="Log worktime" />
             </div>
         </form>
+        <p class="text-danger" th:text="${noCheckboxError}"></p>
     </div>
     <div th:replace="fragments :: no-subjects"></div>
 </body>
