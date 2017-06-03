@@ -1,7 +1,8 @@
 package org.launchcode.controllers;
 
+import org.launchcode.data.LogDao;
 import org.launchcode.data.SubjectDao;
-import org.launchcode.models.LogTime;
+import org.launchcode.models.Log;
 import org.launchcode.models.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by jeannie on 4/29/17.
@@ -25,6 +27,9 @@ public class BrainbowController {
 
     @Autowired
     private SubjectDao subjectDao;
+
+    @Autowired
+    private LogDao logDao;
 
     @RequestMapping(value = "")
     public String index(Model model) {
@@ -95,13 +100,12 @@ public class BrainbowController {
     public String log(Model model) {
         model.addAttribute("title","Log Worktime");
         model.addAttribute("subjects",subjectDao.findAll());
-        model.addAttribute(new LogTime());
+        model.addAttribute(new Log());
         return "brainbow/log";
     }
 
-    //TODO: Fix validation for time. Remove model binding.
     @RequestMapping(value = "log", method = RequestMethod.POST)
-    public String log(@ModelAttribute @Valid LogTime logTime, @RequestParam("ids") int[] ids,
+    public String log(@ModelAttribute @Valid Log log, @RequestParam("ids") int[] ids,
                       Errors errors, Model model) {
 
         if(errors.hasErrors()) {
@@ -110,16 +114,25 @@ public class BrainbowController {
             return "brainbow/log";
         }
 
+        //initialize List for selected subjects
+
+        List<Subject> subjects = new ArrayList<Subject>();
+
         //divide time logged among selected subjects
-        int dividedTime = logTime.getTimeToLog() / ids.length;
+        int dividedTime = log.getTimeToLog() / ids.length;
 
         for(int id : ids) {
-            Subject subjectToEdit = subjectDao.findOne(id);
+            Subject subject = subjectDao.findOne(id);
+            //add subject to List of subjects to log
+            subjects.add(subject);
             //add time entered to previous time
-            int newTime = dividedTime + subjectToEdit.getTime();
-            subjectToEdit.setTime(newTime);
-            subjectDao.save(subjectToEdit);
+            int newTime = dividedTime + subject.getTime();
+            subject.setTime(newTime);
+            subjectDao.save(subject);
         }
+
+        log.setSubjects(subjects);
+        logDao.save(log);
 
         return "redirect:";
     }

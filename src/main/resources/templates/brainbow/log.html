@@ -6,7 +6,7 @@
     <h3 th:text="${title}">Default Title</h3>
     <nav th:replace="fragments :: navigation"></nav>
     <div th:if="${subjects.size()} > 0">
-        <form method="post" style="max-width:400px;" th:object="${logTime}">
+        <form method="post" style="max-width:400px;" th:object="${log}">
 
             <label th:for="ids">What subjects did you work on?</label>
 
@@ -21,7 +21,7 @@
                     TODO: fix this hardcoded linebreak abomination-->
                 <p><br/><br/></p>
                 <label th:for="logTime">How long did you work for?</label>
-                <input class="form-control" th:field="*{timeToLog}" type="number" name="logTime"/>
+                <input class="form-control" th:field="*{timeToLog}" />
                 <span th:errors="*{timeToLog}" class="error"></span>
             </div>
             <div class="form-group">

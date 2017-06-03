@@ -23,8 +23,8 @@ public class Subject {
 
     @NotNull
     @Max(500)
-    private int time;                   //time will be measured in minutes
-    private double timePercentage;      //will store relation of subject's time to total time
+    private int time;                   //measured in minutes
+    private double timePercentage;      //relation of subject's time to total time
     private SubjectColor color;
 
     public Subject() {
