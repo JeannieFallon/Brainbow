@@ -18,7 +18,7 @@ public class Log {
 
     @NotNull
     @Max(500)
-    private int timeToLog;
+    private Integer timeToLog; //make Integer to avoid default value 0 on log input
 
     //use List of full Subject objects in order to expand log analysis later
     @OneToMany
@@ -33,7 +33,7 @@ public class Log {
         return id;
     }
 
-    public int getTimeToLog() {
+    public Integer getTimeToLog() {
         return timeToLog;
     }
 

@@ -16,15 +16,21 @@
                     <label th:for="${subject.id}" th:text="${subject.name}"></label>
                 </div>
             </div>
+
             <div class="form-group">
                 <!--TODO: fix the placeholder on logTime input -->
                 <label th:for="logTime">How long did you work for?</label>
-                <input class="form-control" th:field="*{timeToLog}" />
+
+                <input class="form-control" type="number"
+                       th:field="*{timeToLog}" placeholder="Enter time in minutes." />
+
                 <span th:errors="*{timeToLog}" class="error"></span>
             </div>
+
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Log worktime" />
             </div>
+
         </form>
         <p class="text-danger" th:text="${noCheckboxError}"></p>
     </div>
