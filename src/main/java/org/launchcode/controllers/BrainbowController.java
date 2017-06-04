@@ -7,15 +7,10 @@ import org.launchcode.models.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by jeannie on 4/29/17.
@@ -86,66 +81,12 @@ public class BrainbowController {
             }
         }
 
-        //TEST
-        model.addAttribute("totalTime", totalTime);
-
         model.addAttribute("title", "Home");
         //pass in List of all subjects to display in eventual Brainbow graphic
         model.addAttribute("subjects",subjectsList);
         //pass in List of subject(s) with lowest worktime to suggest next subject to user
         model.addAttribute("lowestTimeSubjects",lowestTimeSubjects);
         return "brainbow/index";
-    }
-
-
-    @RequestMapping(value = "log", method = RequestMethod.GET)
-    public String log(Model model) {
-        model.addAttribute("title","Log Worktime");
-        model.addAttribute("subjects",subjectDao.findAll());
-        model.addAttribute(new Log());
-        return "brainbow/log";
-    }
-
-    @RequestMapping(value = "log", method = RequestMethod.POST, params={"ids"})
-    public String log(@ModelAttribute @Valid Log log, @RequestParam("ids") int[] ids,
-                      Errors errors, Model model) {
-
-        if(errors.hasErrors()) {
-            model.addAttribute("title","Log Worktime");
-            model.addAttribute("subjects",subjectDao.findAll());
-            return "brainbow/log";
-        }
-
-        //initialize List for selected subjects
-
-        List<Subject> subjects = new ArrayList<Subject>();
-
-        //divide time logged among selected subjects
-        int dividedTime = log.getTimeToLog() / ids.length;
-
-        for(int id : ids) {
-            Subject subject = subjectDao.findOne(id);
-            //add subject to List of subjects to log
-            subjects.add(subject);
-            //add time entered to previous time
-            int newTime = dividedTime + subject.getTime();
-            subject.setTime(newTime);
-            subjectDao.save(subject);
-        }
-
-        log.setSubjects(subjects);
-        logDao.save(log);
-
-        return "redirect:";
-    }
-
-    //Overload Log POST method to handle no checkboxes selected
-    @RequestMapping(value = "log", method = RequestMethod.POST)
-    public String log(@ModelAttribute @Valid Log log, Errors errors, Model model) {
-        model.addAttribute("title","Log Worktime");
-        model.addAttribute("subjects",subjectDao.findAll());
-        model.addAttribute("noCheckboxError", "You must select at least one subject.");
-        return "brainbow/log";
     }
 
 
