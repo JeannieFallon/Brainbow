@@ -7,16 +7,46 @@
     <nav th:replace="fragments :: navigation"></nav>
 
     <div th:if="${logs.size()} > 0">
+    <!--
         <table class="table">
-            <tr>
-                <th>Minutes Worked</th>
-                <th>Subjects Covered</th>
-            </tr>
-            <tr th:each="log : ${logs}">
-                <td th:text="${log.timeToLog}"></td>
-                <td th:text="${log.convertSubjectsToString(log.subjects)}"></td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Minutes Worked</th>
+                    <th>Subjects Covered</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="log : ${logs}">
+                    <td th:text="${log.timeToLog}"></td>
+                    <td>
+                        <table class="table">
+                            <tbody>
+                                <tr th:each="subject : ${log.subjects}">
+                                    <td th:text="${subject.name}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
         </table>
+    -->
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Minutes Worked</th>
+                    <th>Subjects Covered</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="log : ${logs}">
+                    <td th:text="${log.timeToLog}"></td>
+                    <td th:text="${log.subjectNames}"></td>
+                </tr>
+            </tbody>
+        </table>
+
     </div>
 
     <div th:unless="${logs} and ${logs.size()}" align="center">

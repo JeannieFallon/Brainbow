@@ -16,14 +16,14 @@ public class Log {
     @GeneratedValue
     private int id;
 
+    //TODO: set a minimum of one to prevent zero & negative numbers inputs
     @NotNull
     @Max(500)
     private Integer timeToLog; //make Integer to avoid default value 0 on log input
 
-    //use List of full Subject objects in order to expand log analysis later
-    @OneToMany
-    @JoinColumn(name = "log_id")
-    private List<Subject> subjects = new ArrayList<Subject>();
+    @Column
+    @ElementCollection(targetClass=String.class)
+    private List<String> subjectNames = new ArrayList<String>();
 
     public Log() {
 
@@ -41,25 +41,11 @@ public class Log {
         this.timeToLog = timeToLog;
     }
 
-    public List<Subject> getSubjects() {
-        return subjects;
+    public List<String> getSubjectNames() {
+        return subjectNames;
     }
 
-    public void setSubjects(List<Subject> subjects) {
-        this.subjects = subjects;
-    }
-
-    //convert List of Subjects to String of Subject names for display on History page
-    //does this violate encapsulation? is this a data operation better performed elsewhere?
-    public String convertSubjectsToString(List<Subject> subjects) {
-
-        String subjectsString = new String();
-        subjectsString += " | ";
-        for(Subject subject : subjects) {
-            subjectsString += subject.getName() + " | ";
-        }
-
-        //String subjectsString = StringUtils.collectionToDelimitedString(subjects, "|");
-        return subjectsString;
+    public void setSubjectNames(List<String> subjectNames) {
+        this.subjectNames = subjectNames;
     }
 }

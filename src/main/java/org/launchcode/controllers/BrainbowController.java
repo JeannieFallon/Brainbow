@@ -113,7 +113,7 @@ public class BrainbowController {
         return "redirect:";
     }
 
-
+    //TODO: add clear history option
     @RequestMapping(value = "history")
     public String history(Model model) {
 
