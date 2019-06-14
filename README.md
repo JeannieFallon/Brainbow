@@ -1,5 +1,4 @@
 # brainbow
-/* In progress */
 
 Brainbow is a tool to analyze worktime distribution using graphical and text feedback. In addition to a 
 dynamic graphic of colored columns--the "brain rainbow" itself--the app also explicitly suggests what 
